@@ -1,0 +1,30 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+  color: $primaryCharcoal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.2s ease-in;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.button {
+  padding: 1rem;
+  width: auto;
+  box-shadow: none;
+  cursor: pointer;
+  border-width: 1px;
+}

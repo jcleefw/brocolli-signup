@@ -1,0 +1,116 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+.main {
+  @extend .flex-row;
+  flex-grow: 3;
+  height: 80vh;
+  padding: 1rem;
+  text-align: center;
+  background-image: url('../vege-background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: $white;
+}
+
+.mainContent {
+  @extend .flex-column;
+  .slogan {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+  }
+
+  .caption {
+    margin: 0 auto 1.5rem;
+  }
+  .requestButton {
+    width: fit-content;
+    background: rgba($primaryCharcoal, 0.85);
+    color: $white;
+    border: 1px solid $white;
+    border-radius: $radius-sm;
+    &:hover {
+      background: rgba($white, 0.85);
+      color: $primaryCharcoal;
+    }
+  }
+}
+
+.button {
+  padding: 1rem;
+  width: auto;
+  box-shadow: none;
+  cursor: pointer;
+  border-width: 1px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: inherit;
+}
+
+.modalContainer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(black, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  &.open {
+    display: flex;
+  }
+}
+.modal {
+  @extend .flex-column;
+  background: $secondaryTone;
+  width: 350px;
+  height: auto;
+  padding: 1rem;
+  border-radius: $radius-sm;
+
+  .buttonIcon {
+    align-self: flex-end;
+  }
+
+  .modalDisplay {
+    text-align: center;
+    .formTitle {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .formDecorator {
+      margin-bottom: 1rem;
+    }
+    .ctaButton {
+      width: 100%;
+      margin: 2rem auto;
+      border-radius: $radius-sm;
+      background-color: $primaryGreen;
+    }
+  }
+
+  .invitationForm {
+    input {
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: $radius-sm;
+      border: 1px solid $primaryCharcoal;
+      background: #ffffffa6;
+      width: 100%;
+    }
+  }
+  .formErrorMessage {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.buttonIcon {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+}
