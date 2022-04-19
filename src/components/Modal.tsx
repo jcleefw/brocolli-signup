@@ -1,29 +1,40 @@
-import React, { FormEvent } from 'react'
+import React from 'react'
 import styles from '../styles/Home.module.scss'
 import cx from 'classnames'
 import { MdClose } from 'react-icons/md'
-import { Form, SuccessFormModal } from './ModalDisplay'
-import { failedProps } from '../App'
+import { Form } from './Form'
+import { SuccessFormModal } from './SuccessFormModal'
+import { useForm } from 'react-hook-form'
 
 interface ModalProps {
   modalOpen: boolean
-  onCloseModalHandler: (e: React.MouseEvent | React.KeyboardEvent) => void
+  onCloseModalHandler: () => void
   submitted: boolean
-  submitting: boolean
-  onSubmitHandler: (e: FormEvent) => void
-  failed: failedProps
-  reset: () => void
+  setSubmitted: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export interface FormValues {
+  fullName: string
+  email: string
+  confirmEmail: string
+}
+
 export const Modal = (props: ModalProps) => {
-  const {
-    modalOpen,
-    onCloseModalHandler,
-    submitted,
-    submitting,
-    onSubmitHandler,
-    failed,
-    reset,
-  } = props
+  const { modalOpen, onCloseModalHandler, setSubmitted, submitted } = props
+
+  const reactHookForm = useForm<FormValues>({
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+  })
+  const { reset } = reactHookForm
+
+  const onResetHandler = () => {
+    console.log('reset is clicked')
+    reset()
+    setSubmitted(false)
+    onCloseModalHandler()
+  }
+
   return (
     <>
       {modalOpen ? (
@@ -39,14 +50,11 @@ export const Modal = (props: ModalProps) => {
             <div className={styles.modalDisplay}>
               {!submitted && (
                 <Form
-                  submitting={submitting}
-                  onSubmitHandler={onSubmitHandler}
-                  failed={failed}
+                  setSubmitted={setSubmitted}
+                  reactHookForm={reactHookForm}
                 />
               )}
-              {submitted && (
-                <SuccessFormModal reset={reset} submitting={submitting} />
-              )}
+              {submitted && <SuccessFormModal onReset={onResetHandler} />}
             </div>
           </div>
         </div>

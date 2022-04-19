@@ -1,4 +1,4 @@
 export * from './Header'
 export * from './Footer'
 export * from './Modal'
-export * from './ModalDisplay'
+export * from './SuccessFormModal'

@@ -67,9 +67,11 @@
 .modal {
   @extend .flex-column;
   background: $secondaryTone;
-  width: 350px;
+  min-width: 350px;
+  width: 40vw;
+  max-width: 600px;
   height: auto;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: $radius-sm;
 
   .buttonIcon {
@@ -90,6 +92,9 @@
       margin: 2rem auto;
       border-radius: $radius-sm;
       background-color: $primaryGreen;
+      &:disabled {
+        background: #ddd;
+      }
     }
   }
 
@@ -102,10 +107,27 @@
       background: #ffffffa6;
       width: 100%;
     }
+    .formField {
+      @extend .flex-column;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .formFieldLabel {
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: bold;
+      padding-left: 1rem;
+    }
+    .formFieldError {
+      font-size: 0.85rem;
+      color: $error;
+      padding-left: 1rem;
+    }
   }
   .formErrorMessage {
     text-align: center;
     margin-bottom: 2rem;
+    color: $error;
   }
 }
 
